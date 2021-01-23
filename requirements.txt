@@ -1,0 +1,6 @@
+discord.py
+python-dotenv
+
+pylint==2.6.0
+black==20.8b1
+isort==5.7.0
