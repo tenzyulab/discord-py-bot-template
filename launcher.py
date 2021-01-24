@@ -1,5 +1,5 @@
 import glob
-import pathlib
+from pathlib import Path
 from traceback import print_exc
 
 from discord.ext import commands
@@ -14,7 +14,7 @@ class MyBot(commands.Bot):
         )
         print(f"Starting {constant.DISCORD_BOT_NAME}")
 
-        for cog in pathlib.Path("cogs/").glob("*.py"):
+        for cog in Path("cogs/").glob("*.py"):
             try:
                 self.load_extension("cogs." + cog.stem)
                 print(f"Loaded {cog.stem}.")
