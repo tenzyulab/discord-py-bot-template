@@ -1,4 +1,3 @@
-import glob
 from pathlib import Path
 from traceback import print_exc
 
@@ -18,7 +17,7 @@ class MyBot(commands.Bot):
             try:
                 self.load_extension("cogs." + cog.stem)
                 print(f"Loaded {cog.stem}.")
-            except:
+            except Exception:
                 print_exc()
 
     async def on_ready(self):
