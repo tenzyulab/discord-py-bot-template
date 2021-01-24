@@ -1,7 +1,7 @@
 from discord.ext import commands
 
 
-class Mod(commands.Cog, command_attrs=dict(hidden=True)):
+class CogsController(commands.Cog, command_attrs=dict(hidden=True)):
     def __init__(self, bot):
         self.bot = bot
 
@@ -28,4 +28,4 @@ class Mod(commands.Cog, command_attrs=dict(hidden=True)):
 
 
 def setup(bot):
-    bot.add_cog(Mod(bot))
+    bot.add_cog(CogsController(bot))
