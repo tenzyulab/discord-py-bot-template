@@ -25,7 +25,7 @@ class MyBot(Bot):
                 print_exc()
 
     async def on_ready(self):
-        print("logged in as:", self.user.name, self.user.id, "\n")
+        print(f"logged in as: {self.user}")
 
     async def on_command_error(self, ctx, error):
         ignore_errors = (
