@@ -7,7 +7,6 @@ load_dotenv()
 # get token from .env
 DISCORD_BOT_TOKEN = getenv("DISCORD_BOT_TOKEN")
 
-
 # setting
-DISCORD_BOT_NAME = "BOT TEMPLATE"
-DISCORD_BOT_PREFIX = "?"
+BOT_NAME = "BOT TEMPLATE"
+BOT_PREFIX = "?"

@@ -1,34 +1,37 @@
 from pathlib import Path
 from traceback import print_exc
 
-from discord.ext import commands
+from discord.ext.commands import (
+    BadArgument,
+    Bot,
+    CheckFailure,
+    CommandNotFound,
+    when_mentioned_or,
+)
 
-import constant
+import const
 
 
-class MyBot(commands.Bot):
+class MyBot(Bot):
     def __init__(self):
-        super().__init__(
-            command_prefix=commands.when_mentioned_or(constant.DISCORD_BOT_PREFIX)
-        )
-        print(f"Starting {constant.DISCORD_BOT_NAME}")
+        super().__init__(command_prefix=when_mentioned_or(const.BOT_PREFIX))
+        print(f"Starting {const.BOT_NAME}")
 
         for cog in Path("cogs/").glob("*.py"):
             try:
                 self.load_extension("cogs." + cog.stem)
-                print(f"Loaded {cog.stem}.")
+                print(f"Loaded Extension: {cog.stem}.py")
             except Exception:
                 print_exc()
 
     async def on_ready(self):
-        user = self.user
-        print("logged in as:", str(user), user.id)
+        print("logged in as:", self.user.name, self.user.id, "\n")
 
     async def on_command_error(self, ctx, error):
         ignore_errors = (
-            commands.CommandNotFound,
-            commands.BadArgument,
-            commands.CheckFailure,
+            BadArgument,
+            CheckFailure,
+            CommandNotFound,
         )
         if isinstance(error, ignore_errors):
             return
@@ -37,4 +40,4 @@ class MyBot(commands.Bot):
 
 if __name__ == "__main__":
     bot = MyBot()
-    bot.run(constant.DISCORD_BOT_TOKEN)
+    bot.run(const.DISCORD_BOT_TOKEN)
