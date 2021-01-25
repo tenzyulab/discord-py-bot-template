@@ -1,7 +1,7 @@
-from discord.ext import commands
+from discord.ext.commands import Cog, command
 
 
-class CogsController(commands.Cog, command_attrs=dict(hidden=True)):
+class CogsController(Cog, command_attrs=dict(hidden=True)):
     def __init__(self, bot):
         self.bot = bot
 
@@ -10,19 +10,19 @@ class CogsController(commands.Cog, command_attrs=dict(hidden=True)):
             await ctx.send("You don't have permission.")
             return False
         return True
-    
-    @commands.command(name="load")
-    async def owner_load(self, ctx, cog):
+
+    @command(name="load")
+    async def _cog_load(self, ctx, cog):
         self.bot.load_extension("cogs." + cog)
         await ctx.send(f"Loaded Extension: {cog}.py")
 
-    @commands.command(name="unload")
-    async def owner_unload(self, ctx, cog):
+    @command(name="unload")
+    async def _cog_unload(self, ctx, cog):
         self.bot.unload_extension("cogs." + cog)
         await ctx.send(f"Unloaded Extension: {cog}.py")
 
-    @commands.command(name="reload")
-    async def owner_reload(self, ctx, cog):
+    @command(name="reload")
+    async def _cog_reload(self, ctx, cog):
         self.bot.reload_extension("cogs." + cog)
         await ctx.send(f"Reloaded Extension: {cog}.py")
 
