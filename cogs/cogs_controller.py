@@ -6,10 +6,10 @@ class CogsController(Cog, command_attrs=dict(hidden=True)):
         self.bot = bot
 
     async def cog_check(self, ctx):
-        if not await ctx.bot.is_owner(ctx.author):
-            await ctx.send("You don't have permission.")
-            return False
-        return True
+        if await ctx.bot.is_owner(ctx.author):
+            return True
+        await ctx.send("You don't have permission.")
+        return False
 
     @command(name="load")
     async def _cog_load(self, ctx, cog):
