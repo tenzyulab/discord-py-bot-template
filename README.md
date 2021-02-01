@@ -4,7 +4,7 @@
 
 ### Development
 
-1. Clone this repository.
+1. Clone the repository that was created using this template.
 
 2. `python3 -m venv .venv` to create a virtual environment.
 
