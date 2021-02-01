@@ -1,30 +1,24 @@
 from discord.ext.commands import (
-    BadArgument,
     Bot,
+    CheckFailure,
     Cog,
     CommandError,
     CommandNotFound,
     Context,
-    MissingPermissions,
 )
 
 
 class ErrorHandler(Cog):
-    def __init__(self, bot):
+    def __init__(self, bot: Bot):
         self.bot = bot
 
     @Cog.listener()
     async def on_command_error(self, ctx: Context, error: CommandError):
-        ignore_errors = (
-            BadArgument,
-            CommandNotFound,
-        )
+        ignore_errors = (CommandNotFound, CheckFailure)
         if isinstance(error, ignore_errors):
             return
 
-        if isinstance(error, MissingPermissions):
-            missing = ", ".join(error.missing_perms)
-            await ctx.send(f"You don't have {missing} permission(s).")
+        await ctx.send(error)
 
 
 def setup(bot: Bot):
