@@ -9,7 +9,7 @@ import const
 class MyBot(Bot):
     def __init__(self):
         super().__init__(command_prefix=when_mentioned_or(const.BOT_PREFIX))
-        print(f"Starting {const.BOT_NAME}")
+        print(f"Launching {const.BOT_NAME}")
 
         for cog in Path("cogs/").glob("*.py"):
             try:
