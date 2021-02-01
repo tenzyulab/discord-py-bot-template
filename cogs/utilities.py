@@ -4,7 +4,7 @@ from discord.ext.commands import Bot, Cog, Context, command
 
 
 class Utilities(Cog):
-    def __init__(self, bot):
+    def __init__(self, bot: Bot):
         self.bot = bot
 
     @command()
