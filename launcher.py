@@ -1,13 +1,7 @@
 from pathlib import Path
 from traceback import print_exc
 
-from discord.ext.commands import (
-    BadArgument,
-    Bot,
-    CheckFailure,
-    CommandNotFound,
-    when_mentioned_or,
-)
+from discord.ext.commands import Bot, when_mentioned_or
 
 import const
 
@@ -26,16 +20,6 @@ class MyBot(Bot):
 
     async def on_ready(self):
         print(f"logged in as: {self.user}")
-
-    async def on_command_error(self, ctx, error):
-        ignore_errors = (
-            BadArgument,
-            CheckFailure,
-            CommandNotFound,
-        )
-        if isinstance(error, ignore_errors):
-            return
-        await ctx.send(error)
 
 
 if __name__ == "__main__":
