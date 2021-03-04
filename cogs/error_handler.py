@@ -17,8 +17,7 @@ class ErrorHandler(Cog):
         ignore_errors = (CommandNotFound, CheckFailure)
         if isinstance(error, ignore_errors):
             return
-
-        await ctx.send(error)
+        await ctx.reply(error)
 
 
 def setup(bot: Bot):
